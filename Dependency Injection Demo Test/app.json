@@ -1,0 +1,45 @@
+{
+  "id": "c3e02a15-c53b-4045-b6bc-dc143b19b63b",
+  "name": "Dependency Injection Demo Test",
+  "publisher": "Red Rabbit",
+  "version": "1.0.0.0",
+  "brief": "Test app for interfaces and dependency injection demo.",
+  "description": "This app is the test app for the demo for interfaces and dependency injection",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+    {
+      "id": "6a25d8b3-a4b8-42dc-ac37-a8666604d18a",
+      "name": "Dependency Injection Demo",
+      "publisher": "Red Rabbit",
+      "version": "1.0.0.0"
+    },
+    {
+      "id": "dd0be2ea-f733-4d65-bb34-a28f4624fb14",
+      "name": "Library Assert",
+      "publisher": "Microsoft",
+      "version": "21.0.0.0"
+    }
+  ],
+  "screenshots": [],
+  "platform": "21.0.0.0",
+  "application": "21.0.0.0",
+  "idRanges": [
+    {
+      "from": 50145,
+      "to": 50149
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": false,
+    "includeSourceInSymbolFile": false
+  },
+  "runtime": "10.0",
+  "features": [
+    "NoImplicitWith"
+  ]
+}
