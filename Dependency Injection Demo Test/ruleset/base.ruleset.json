@@ -1,0 +1,11 @@
+{
+    "name": "Base Ruleset",
+    "description": "Basic Ruleset",
+    "rules": [
+        {
+            "id": "AA0210",
+            "action": "Hidden",
+            "justification": "Key issues are not relevant to this demo app."
+        }
+    ]
+}
