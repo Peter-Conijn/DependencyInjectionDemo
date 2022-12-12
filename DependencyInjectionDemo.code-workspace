@@ -7,5 +7,7 @@
 			"path": "Dependency Injection Demo Test"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"al.ruleSetPath": ".\\ruleset\\base.ruleset.json"
+	}
 }
