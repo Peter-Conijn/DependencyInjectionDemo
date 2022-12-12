@@ -1,3 +1,4 @@
+#pragma warning disable
 codeunit 50126 "Price Request Handler"
 {
     internal procedure GetItemPriceFromAPI(ItemNo: Code[20]; PriceDate: Date; var UnitPrice: Decimal): Boolean
@@ -10,3 +11,4 @@ codeunit 50126 "Price Request Handler"
         exit(false);
     end;
 }
+#pragma warning enable
