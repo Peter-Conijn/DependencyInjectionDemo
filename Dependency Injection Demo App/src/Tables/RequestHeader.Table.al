@@ -48,12 +48,12 @@ table 50120 "Request Header"
 
     trigger OnInsert()
     var
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit NoSeriesManagement;
     begin
         if "No." <> '' then
             exit;
         TestNoSeries();
-        NoSeriesMgt.InitSeries(GetNoSeriesCode(), xRec."No. Series", WorkDate(), "No.", "No. Series");
+        NoSeriesManagement.InitSeries(GetNoSeriesCode(), xRec."No. Series", WorkDate(), "No.", "No. Series");
     end;
 
     trigger OnDelete()
@@ -64,12 +64,12 @@ table 50120 "Request Header"
 
     local procedure TestForManualNoSeries()
     var
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit NoSeriesManagement;
     begin
         if Rec."No." = xRec."No." then
             exit;
 
-        NoSeriesMgt.TestManual(GetNoSeriesCode());
+        NoSeriesManagement.TestManual(GetNoSeriesCode());
         "No. Series" := '';
     end;
 
