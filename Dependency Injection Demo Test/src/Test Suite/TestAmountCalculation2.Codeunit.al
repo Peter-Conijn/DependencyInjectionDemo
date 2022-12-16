@@ -1,6 +1,7 @@
 codeunit 50149 "Test Amount Calculation 2"
 {
     Subtype = Test;
+    TestPermissions = Disabled;
 
     [Test]
     procedure TestAmountCalculation()
