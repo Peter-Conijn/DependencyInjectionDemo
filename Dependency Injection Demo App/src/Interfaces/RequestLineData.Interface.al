@@ -18,5 +18,5 @@ interface "Request Line Data"
     /// </summary>
     /// <param name="RequestLine">The request line that the unit price needs to be validated for.</param>
     /// <param name="xRecQuantity">The value of the unit price the last time the request line record was retrieved from the database.</param>
-    procedure ValidateUnitPrice(var RequestLine: Record "Request Line"; xRecUnitPrice: Decimal);
+    procedure ValidateUnitPrice(var RequestLine: Record "Request Line"; xRecUnitPrice: Decimal)
 }
