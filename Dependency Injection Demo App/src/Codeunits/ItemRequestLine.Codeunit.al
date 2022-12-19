@@ -2,6 +2,7 @@ codeunit 50120 "Item Request Line" implements "Request Line Data"
 {
     Access = Internal;
 
+    #region Interface Procedures
     procedure FillLineData(var RequestLine: Record "Request Line")
     begin
         FillLineWithItemData(RequestLine);
@@ -18,6 +19,7 @@ codeunit 50120 "Item Request Line" implements "Request Line Data"
         if RequestLine."Unit Price" <> xRecUnitPrice then
             CalculateRequestLineAmount(RequestLine);
     end;
+    #endregion Interface Procedures
 
     local procedure FillLineWithItemData(var RequestLine: Record "Request Line")
     var

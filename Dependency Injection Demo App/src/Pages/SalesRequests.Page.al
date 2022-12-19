@@ -6,7 +6,7 @@ page 50122 "Sales Requests"
     Editable = false;
     DataCaptionFields = "No.";
     SourceTable = "Request Header";
-    UsageCategory = Documents;
+    UsageCategory = Lists;
     CardPageId = "Sales Request";
 
     layout
