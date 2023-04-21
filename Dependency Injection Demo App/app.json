@@ -2,7 +2,7 @@
   "id": "6a25d8b3-a4b8-42dc-ac37-a8666604d18a",
   "name": "Dependency Injection Demo",
   "publisher": "Red Rabbit",
-  "version": "1.1.0.0",
+  "version": "1.2.0.0",
   "brief": "A demo for interfaces and dependency injection.",
   "description": "This app can be used as a demo for interfaces and dependency injection",
   "privacyStatement": "",
