@@ -5,31 +5,31 @@ codeunit 50120 "Item Request Line" implements "Request Line Data"
     #region Interface Procedures
     procedure FillLineData(var RequestLine: Record "Request Line")
     begin
-        OnBeforeFillLineData(RequestLine);
+        RunRequestLineTypeEvents.RunBeforeFillLineData(RequestLine);
 
         FillLineWithItemData(RequestLine);
 
-        OnAfterFillLineData(RequestLine);
+        RunRequestLineTypeEvents.RunAfterFillLineData(RequestLine);
     end;
 
     procedure ValidateQuantity(var RequestLine: Record "Request Line"; xRecQuantity: Decimal);
     begin
-        OnBeforeValidateQuantity(RequestLine, xRecQuantity);
+        RunRequestLineTypeEvents.RunBeforeValidateQuantity(RequestLine, xRecQuantity);
 
         if RequestLine.Quantity <> xRecQuantity then
             CalculateRequestLineAmount(RequestLine);
 
-        OnAfterValidateQuantity(RequestLine, xRecQuantity);
+        RunRequestLineTypeEvents.RunAfterValidateQuantity(RequestLine, xRecQuantity);
     end;
 
     procedure ValidateUnitPrice(var RequestLine: Record "Request Line"; xRecUnitPrice: Decimal);
     begin
-        OnBeforeValidateUnitPrice(RequestLine, xRecUnitPrice);
+        RunRequestLineTypeEvents.RunBeforeValidateUnitPrice(RequestLine, xRecUnitPrice);
 
         if RequestLine."Unit Price" <> xRecUnitPrice then
             CalculateRequestLineAmount(RequestLine);
 
-        OnAfterValidateUnitPrice(RequestLine, xRecUnitPrice);
+        RunRequestLineTypeEvents.RunAfterValidateUnitPrice(RequestLine, xRecUnitPrice);
     end;
     #endregion Interface Procedures
 
@@ -40,11 +40,13 @@ codeunit 50120 "Item Request Line" implements "Request Line Data"
         Item.SetLoadFields(Description, "Sales Unit of Measure", "Base Unit of Measure");
         if not Item.Get(RequestLine."No.") then
             exit;
+
         RequestLine."Requested Date" := GetRequestedDateFromHeader(RequestLine."Document No.");
         RequestLine.Quantity := GetDefaultQuantity();
         RequestLine.Description := Item.Description;
         RequestLine."Unit of Measure Code" := GetUnitOfMeasure(Item);
         RequestLine."Unit Price" := GetItemPrice(Item, RequestLine."Requested Date");
+
         CalculateRequestLineAmount(RequestLine);
     end;
 
@@ -83,33 +85,6 @@ codeunit 50120 "Item Request Line" implements "Request Line Data"
             exit(RequestHeader."Requested Date");
     end;
 
-    [IntegrationEvent(false, false)]
-    local procedure OnBeforeFillLineData(var RequestLine: Record "Request Line")
-    begin
-    end;
-
-    [IntegrationEvent(false, false)]
-    local procedure OnAfterFillLineData(var RequestLine: Record "Request Line")
-    begin
-    end;
-
-    [IntegrationEvent(false, false)]
-    local procedure OnBeforeValidateQuantity(var RequestLine: Record "Request Line"; xRecQuantity: Decimal)
-    begin
-    end;
-
-    [IntegrationEvent(false, false)]
-    local procedure OnAfterValidateQuantity(var RequestLine: Record "Request Line"; xRecQuantity: Decimal)
-    begin
-    end;
-
-    [IntegrationEvent(false, false)]
-    local procedure OnBeforeValidateUnitPrice(var RequestLine: Record "Request Line"; xRecUnitPrice: Decimal)
-    begin
-    end;
-
-    [IntegrationEvent(false, false)]
-    local procedure OnAfterValidateUnitPrice(var RequestLine: Record "Request Line"; xRecUnitPrice: Decimal)
-    begin
-    end;
+    var
+        RunRequestLineTypeEvents: Codeunit "Run Request Line Type Events";
 }
