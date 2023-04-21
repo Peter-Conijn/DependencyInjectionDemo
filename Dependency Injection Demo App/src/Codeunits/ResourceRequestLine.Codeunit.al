@@ -4,19 +4,31 @@ codeunit 50121 "Resource Request Line" implements "Request Line Data"
 
     procedure FillLineData(var RequestLine: Record "Request Line")
     begin
+        OnBeforeFillLineData(RequestLine);
+
         FillLineWithResourceData(RequestLine);
+
+        OnAfterFillLineData(RequestLine);
     end;
 
     procedure ValidateQuantity(var RequestLine: Record "Request Line"; xRecQuantity: Decimal);
     begin
+        OnBeforeValidateQuantity(RequestLine, xRecQuantity);
+
         if RequestLine.Quantity <> xRecQuantity then
             CalculateRequestLineAmount(RequestLine);
+
+        OnAfterValidateQuantity(RequestLine, xRecQuantity);
     end;
 
     procedure ValidateUnitPrice(var RequestLine: Record "Request Line"; xRecUnitPrice: Decimal);
     begin
+        OnBeforeValidateUnitPrice(RequestLine, xRecUnitPrice);
+
         if RequestLine."Unit Price" <> xRecUnitPrice then
             CalculateRequestLineAmount(RequestLine);
+
+        OnAfterValidateUnitPrice(RequestLine, xRecUnitPrice);
     end;
 
     local procedure FillLineWithResourceData(var RequestLine: Record "Request Line")
@@ -61,5 +73,35 @@ codeunit 50121 "Resource Request Line" implements "Request Line Data"
         RequestHeader.SetLoadFields("Requested Date");
         if RequestHeader.Get(RequestHeaderNo) then
             exit(RequestHeader."Requested Date");
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeFillLineData(var RequestLine: Record "Request Line")
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAfterFillLineData(var RequestLine: Record "Request Line")
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeValidateQuantity(var RequestLine: Record "Request Line"; xRecQuantity: Decimal)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAfterValidateQuantity(var RequestLine: Record "Request Line"; xRecQuantity: Decimal)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeValidateUnitPrice(var RequestLine: Record "Request Line"; xRecUnitPrice: Decimal)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAfterValidateUnitPrice(var RequestLine: Record "Request Line"; xRecUnitPrice: Decimal)
+    begin
     end;
 }
